@@ -22,7 +22,6 @@ namespace WpfApp1.Windows
         public Student_Group()
         {
             InitializeComponent();
-            
         }
 
         private void addStudent_Click(object sender, RoutedEventArgs e)
