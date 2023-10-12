@@ -7,22 +7,34 @@
         mc:Ignorable="d"
         Title="Student_Group" Height="450" Width="800">
     <Grid>
-        <StackPanel HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Студент"/>
-                <ComboBox>
+        <StackPanel HorizontalAlignment="Center" 
+                    Margin="20">
+            <StackPanel Orientation="Horizontal"
+                        Margin="4">
+                <Label Content="Студент" 
+                       Width="55"/>
+                <ComboBox Width="100"
+                          BorderThickness="0"
+                          x:Name="studentsMenu">
                     
                 </ComboBox> 
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Группа"/>
-                <ComboBox>
+            <StackPanel Orientation="Horizontal"
+                        Margin="4">
+                <Label Content="Группа" Width="55"/>
+                <ComboBox Width="100"
+                          BorderThickness="0"
+                          x:Name="groupMenu">
 
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Отменить" x:Name="Cancel" Click="Cancel_Click"/>
-                <Button Content="Добавить" x:Name="addStudent" Click="addStudent_Click"/>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Margin="3" 
+                        Content="Отменить" 
+                        x:Name="Cancel" Click="Cancel_Click"/>
+                <Button Margin="3" 
+                        Content="Добавить"
+                        x:Name="addStudent" Click="addStudent_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

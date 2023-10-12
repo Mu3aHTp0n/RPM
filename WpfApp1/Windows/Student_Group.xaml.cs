@@ -22,26 +22,21 @@ namespace WpfApp1.Windows
         public Student_Group()
         {
             InitializeComponent();
+
+            List<People> peoples = Singletone.DB.People.ToList();
+            string fullName = "";
+            foreach (People people in peoples)
+                fullName += people.SecondName + " " + people.Name + " " + people.SurName;
         }
 
         private void addStudent_Click(object sender, RoutedEventArgs e)
         {
-            List<People> people = Singletone.DB.People.ToList();
-            List<string> student_group = new List<string>();
-            foreach (Student student in people.Student)
-            {
-                student_group.Add(people.Name);
-            }
 
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            //ZavOtdeleniya zavOtdeleniya = new ZavOtdeleniya();
-            //Hide();
-            //zavOtdeleniya.ShowDialog();
-            //Show();
-            Student_Group student_Group = new Student_Group();
+            _ = new Student_Group();
             Close();
         }
     }
