@@ -26,12 +26,12 @@ namespace WpfApp1.Windows
 
         private void addStudent_Click(object sender, RoutedEventArgs e)
         {
-           //List<People> people = Singletone.DB.People.ToList();
-           //List <string> student_group = new List<string>();
-           // foreach (Student student in people.Student)
-           // {
-           //     student_group.Add(people.Name);
-           // }
+            List<People> people = Singletone.DB.People.ToList();
+            List<string> student_group = new List<string>();
+            foreach (Student student in people.Student)
+            {
+                student_group.Add(people.Name);
+            }
 
         }
 
