@@ -15,25 +15,28 @@ using System.Windows.Shapes;
 namespace WpfApp1.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для UserRole.xaml
     /// </summary>
-    public partial class Student_Group : Window
+    public partial class UserRole : Window
     {
-        public Student_Group()
+        public UserRole()
         {
             InitializeComponent();
 
-            List<People> peoples = Singletone.DB.People.ToList();
-            foreach (People people in peoples)
-                studentsMenu.Items.Add(people.SecondName + " " + people.Name + " " + people.SurName);
+            List<User> users = Singletone.DB.User.ToList();
+            foreach (User user in users)
+                userMenu.Items.Add(user.login);
 
-            List<Group> groups = Singletone.DB.Group.ToList();
-            foreach (Group group in groups)
-                groupMenu.Items.Add(group.Name);
+            List<Role> roles = Singletone.DB.Role.ToList();
+            foreach (Role role in roles)
+                roleMenu.Items.Add(role.Name);
+
         }
 
-        private void addStudent_Click(object sender, RoutedEventArgs e)
+        private void saveRole_Click(object sender, RoutedEventArgs e)
         {
+            
+
             Singletone.DB.SaveChanges();
         }
 
