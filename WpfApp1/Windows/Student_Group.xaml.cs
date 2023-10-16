@@ -27,6 +27,9 @@ namespace WpfApp1.Windows
             string fullName = "";
             foreach (People people in peoples)
                 fullName += people.SecondName + " " + people.Name + " " + people.SurName;
+
+            studentsMenu.Items.Add(fullName);
+
         }
 
         private void addStudent_Click(object sender, RoutedEventArgs e)

@@ -35,10 +35,10 @@ namespace WpfApp1.Windows
                 List<string> roles = new List<string>();
                 string separator = ", ";
 
-                foreach (Role role in user.Role)
-                {
-                    roles.Add(role.Name);
-                }
+                //foreach (Role role in user.Role)
+                //{
+                //    roles.Add(role.Name);
+                //}
                 MessageBox.Show($"Здравствуйте, {user.login}, ваши роли: {String.Join(separator, roles)}");
                 if(roles.Contains("Зав отделения"))
                 {
