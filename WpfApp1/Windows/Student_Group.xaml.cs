@@ -24,11 +24,11 @@ namespace WpfApp1.Windows
             InitializeComponent();
 
             List<People> peoples = Singletone.DB.People.ToList();
-            string fullName = "";
             foreach (People people in peoples)
-                fullName += people.SecondName + " " + people.Name + " " + people.SurName;
+            {
 
-            studentsMenu.Items.Add(fullName);
+                studentsMenu.Items.Add(people.SecondName + " " + people.Name + " " + people.SurName);
+            }
 
         }
 
