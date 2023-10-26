@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfApp1.Windows.SetRole"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Windows"
+        mc:Ignorable="d"
+        Title="SetRole" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" 
+                    Margin="0,20,0,20" Width="400">
+            <StackPanel Orientation="Horizontal"
+                        Margin="4">
+                <Label Content="Пользователь" 
+                       Width="94"/>
+                <ComboBox Width="121"
+                          BorderThickness="0"
+                          x:Name="userMenu"
+                          DisplayMemberPath="login"
+                          SelectionChanged="userMenu_SelectionChanged">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                  <Label Content="Не назначенные роли"/>
+                    <ListBox
+                      x:Name="userNoSetRole"
+                      DisplayMemberPath="Name">
+                    </ListBox>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <Button Content=">" x:Name="add" Click="add_Click"/>
+                    <Button Content=">>" x:Name="addAll" Click="addAll_Click"/>
+                    <Button Content="&lt;" x:Name="del" Click="del_Click"/>
+                    <Button Content="&lt;&lt;" x:Name="delAll" Click="delAll_Click"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Назанченные роли"/>
+                    <ListBox x:Name="userSetRole"
+                      DisplayMemberPath="Name">
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Button Margin="3" 
+                        Content="Отменить" 
+                        x:Name="Cancel" Click="Cancel_Click"/>
+                <Button Margin="3" 
+                        Content="Сохранить"
+                        x:Name="SaveUser" Click="SaveUser_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
