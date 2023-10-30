@@ -28,23 +28,12 @@ namespace WpfApp1.Windows
         {
             groupMenu.ItemsSource = Singletone.DB.Group.ToList();
 
+            SetItemSourcePeoples();
+        }
+        void SetItemSourcePeoples ()
+        {
             peoples.ItemsSource = PeopleView.ItemsSource(
                 Singletone.DB.People.ToList(), Singletone.DB.Student.ToList());
-        }
-
-        private void UpdateComboBox()
-        {
-            Group groups = groupMenu.SelectedItem as Group;
-            if (groups == null) return;
-
-            List<Student> students = Singletone.DB.Student.ToList();
-            List<People> peoplesId = Singletone.DB.People.ToList();
-
-            //List<Role> allroles = Singletone.DB.Role.ToList();
-            //foreach (Role role in user.Role)
-            //{
-            //    if ()
-            //}
         }
 
         class PeopleView
@@ -81,10 +70,21 @@ namespace WpfApp1.Windows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (groupMenu.SelectedItem == null) return;
             foreach (var item in peoples.Items)
             {
-                PeopleView people = item as PeopleView;
+                PeopleView peopleView = item as PeopleView;
+                if (peopleView.Check == true)
+                {
+                    Student student = new Student();
+                    student.People = peopleView.People;
+                    student.Group = groupMenu.SelectedItem as Group;
+                    student.Date = DateTime.Now;
+                    Singletone.DB.Student.Add(student);
+                }
             }
+            Singletone.DB.SaveChanges();
+            SetItemSourcePeoples();
         }
     }
 }
