@@ -10,11 +10,12 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center">
             <Label Content="Пользователи"/>
-            <DataGrid x:Name="people" AutoGenerateColumns="False">
+            <DataGrid x:Name="peoples" AutoGenerateColumns="False">
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}"/>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding SurName}"/>
+                    <DataGridCheckBoxColumn Binding="{Binding Check}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding People.SecondName}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding People.Name}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding People.SurName}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
@@ -23,6 +24,8 @@
                           DisplayMemberPath="Name"
                           x:Name="groupMenu">
                 </ComboBox>
+                <Button Content="Отмена" x:Name="Cancel"/>
+                <Button Content="Сохранить" x:Name="Save" Click="Save_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
