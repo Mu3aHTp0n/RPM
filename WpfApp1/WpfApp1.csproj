@@ -113,6 +113,9 @@
     <Compile Include="Windows\SetRole.xaml.cs">
       <DependentUpon>SetRole.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserRegistration.xaml.cs">
+      <DependentUpon>UserRegistration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UsersTable.xaml.cs">
       <DependentUpon>UsersTable.xaml</DependentUpon>
     </Compile>
@@ -134,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SetRole.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserRegistration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

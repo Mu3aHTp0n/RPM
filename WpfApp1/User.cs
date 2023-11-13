@@ -18,6 +18,7 @@ namespace WpfApp1
         public User()
         {
             this.Role = new HashSet<Role>();
+            this.People = new HashSet<People>();
         }
     
         public string login { get; set; }
@@ -25,5 +26,7 @@ namespace WpfApp1
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Role> Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<People> People { get; set; }
     }
 }

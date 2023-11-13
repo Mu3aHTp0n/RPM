@@ -40,6 +40,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SecondName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SurName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -80,6 +81,18 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <Association Name="FK_People_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="UserLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -150,6 +163,10 @@
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_People_User" Association="Self.FK_People_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Student" EntitySet="Student" />
@@ -200,6 +217,10 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <AssociationSet Name="FK_People_User" Association="Model.FK_People_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Discipline">
           <Key>
@@ -239,6 +260,8 @@
           <Property Name="SurName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Student" Relationship="Model.FK_Student_People" FromRole="People" ToRole="Student" />
           <NavigationProperty Name="Teacher" Relationship="Model.FK_Teacher_People" FromRole="People" ToRole="Teacher" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Model.FK_People_User" FromRole="People" ToRole="User" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -311,10 +334,23 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Model.User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="People" Relationship="Model.FK_People_User" FromRole="User" ToRole="People" />
         </EntityType>
         <Association Name="User_Role">
           <End Type="Model.Role" Role="Role" Multiplicity="*" />
           <End Type="Model.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_People_User">
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <End Type="Model.People" Role="People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="UserLogin" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -355,6 +391,7 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="Model.People">
               <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
                 <ScalarProperty Name="SurName" ColumnName="SurName" />
                 <ScalarProperty Name="SecondName" ColumnName="SecondName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

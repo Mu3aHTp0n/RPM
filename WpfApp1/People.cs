@@ -25,10 +25,12 @@ namespace WpfApp1
         public string Name { get; set; }
         public string SecondName { get; set; }
         public string SurName { get; set; }
+        public string UserLogin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teacher> Teacher { get; set; }
+        public virtual User User { get; set; }
     }
 }

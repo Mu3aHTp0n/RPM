@@ -15,8 +15,9 @@
         <AssociationConnector Association="Model.FK_Student_People" />
         <AssociationConnector Association="Model.FK_Teacher_People" />
         <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="8.375" PointY="3.875" />
-        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="10.625" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="10.75" PointY="5.375" />
         <AssociationConnector Association="Model.User_Role" />
+        <AssociationConnector Association="Model.FK_People_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
