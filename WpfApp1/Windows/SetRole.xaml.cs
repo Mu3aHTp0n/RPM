@@ -50,7 +50,7 @@ namespace WpfApp1.Windows
         {
             Singletone.DB.SaveChanges();
         }
-
+        //
         private void userMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateListBox();
