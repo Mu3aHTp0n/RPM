@@ -15,22 +15,14 @@ namespace WpfApp1
 using System;
     using System.Collections.Generic;
     
-public partial class Student
+public partial class AcademicYear
 {
 
     public decimal ID { get; set; }
 
-    public decimal PeopleID { get; set; }
+    public decimal StartYear { get; set; }
 
-    public decimal GroupID { get; set; }
-
-    public System.DateTime Date { get; set; }
-
-
-
-    public virtual Group Group { get; set; }
-
-    public virtual People People { get; set; }
+    public decimal EndYear { get; set; }
 
 }
 

@@ -4,6 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
+<<<<<<< Updated upstream
     <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Discipline">
           <Key>
@@ -179,6 +180,186 @@
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
+=======
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="AcademicYear" EntityType="Model.Store.AcademicYear" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Discipline" EntityType="Model.Store.Discipline" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Group" EntityType="Model.Store.Group" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Journal" EntityType="Model.Store.Journal" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="Model.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="Model.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Student" EntityType="Model.Store.Student" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Teacher" EntityType="Model.Store.Teacher" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="Model.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Role" EntityType="Model.Store.User_Role" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Student_Group" Association="Model.Store.FK_Student_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_People" Association="Model.Store.FK_Student_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_People" Association="Model.Store.FK_Teacher_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_Role" Association="Model.Store.FK_User_Role_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role_User" Association="Model.Store.FK_User_Role_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="User_Role" EntitySet="User_Role" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AcademicYear">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StartYear" Type="decimal" Nullable="false" Precision="4" Scale="0" />
+    <Property Name="EndYear" Type="decimal" Nullable="false" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityType Name="Discipline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Year" Type="decimal" Nullable="false" Precision="4" Scale="0" />
+    <Property Name="Litera" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="SubGroup" Type="decimal" Nullable="false" Precision="1" Scale="0" />
+    <Property Name="CountClasses" Type="decimal" Nullable="false" Precision="2" Scale="0" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TeacherID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="DisciplineID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StudentID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SurName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SecondName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserLogin" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PeopleID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="GroupID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="decimal" StoreGeneratedPattern="Identity" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PeopleID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="login" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_Role">
+    <Key>
+      <PropertyRef Name="Role_ID" />
+      <PropertyRef Name="User_login" />
+    </Key>
+    <Property Name="Role_ID" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="User_login" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Student_Group">
+    <End Role="Group" Type="Model.Store.Group" Multiplicity="1" />
+    <End Role="Student" Type="Model.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="GroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_People">
+    <End Role="People" Type="Model.Store.People" Multiplicity="1" />
+    <End Role="Student" Type="Model.Store.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="PeopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_People">
+    <End Role="People" Type="Model.Store.People" Multiplicity="1" />
+    <End Role="Teacher" Type="Model.Store.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="PeopleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_Role">
+    <End Role="Role" Type="Model.Store.Role" Multiplicity="1" />
+    <End Role="User_Role" Type="Model.Store.User_Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="Role_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role_User">
+    <End Role="User_Role" Type="Model.Store.User_Role" Multiplicity="*" />
+    <End Role="User" Type="Model.Store.User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="User_Role">
+        <PropertyRef Name="User_login" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+>>>>>>> Stashed changes
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -191,7 +372,11 @@
           <NavigationProperty Name="Role" Relationship="Model.User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+<<<<<<< Updated upstream
           <EntitySet Name="User" EntityType="Self.User" />
+=======
+          <EntitySet Name="AcademicYear" EntityType="Model.AcademicYear" />
+>>>>>>> Stashed changes
           <EntitySet Name="Discipline" EntityType="Model.Discipline" />
           <EntitySet Name="Group" EntityType="Model.Group" />
           <EntitySet Name="Journal" EntityType="Model.Journal" />
@@ -199,6 +384,7 @@
           <EntitySet Name="Role" EntityType="Model.Role" />
           <EntitySet Name="Student" EntityType="Model.Student" />
           <EntitySet Name="Teacher" EntityType="Model.Teacher" />
+          <EntitySet Name="User" EntityType="Model.User" />
           <AssociationSet Name="FK_Student_Group" Association="Model.FK_Student_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Student" EntitySet="Student" />
@@ -216,6 +402,17 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
+<<<<<<< Updated upstream
+=======
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartYear" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="EndYear" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+        </EntityType>
+>>>>>>> Stashed changes
         <EntityType Name="Discipline">
           <Key>
             <PropertyRef Name="ID" />
@@ -231,8 +428,8 @@
           <Property Name="Year" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
           <Property Name="Litera" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="SubGroup" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
-          <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Student" Relationship="Model.FK_Student_Group" FromRole="Group" ToRole="Student" />
         </EntityType>
         <EntityType Name="Journal">
@@ -248,10 +445,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SurName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserLogin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Student" Relationship="Model.FK_Student_People" FromRole="People" ToRole="Student" />
           <NavigationProperty Name="Teacher" Relationship="Model.FK_Teacher_People" FromRole="People" ToRole="Teacher" />
         </EntityType>
@@ -270,7 +468,7 @@
           <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PeopleID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="GroupID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Group" Relationship="Model.FK_Student_Group" FromRole="Student" ToRole="Group" />
           <NavigationProperty Name="People" Relationship="Model.FK_Student_People" FromRole="Student" ToRole="People" />
         </EntityType>
@@ -279,9 +477,17 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PeopleID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="People" Relationship="Model.FK_Teacher_People" FromRole="Teacher" ToRole="People" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="Model.User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Student_Group">
           <End Type="Model.Group" Role="Group" Multiplicity="1" />
@@ -323,6 +529,7 @@
           <End Type="Model.Role" Role="Role" Multiplicity="*" />
           <End Type="Model.User" Role="User" Multiplicity="*" />
         </Association>
+<<<<<<< Updated upstream
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -415,6 +622,109 @@
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
+=======
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="AcademicYear">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AcademicYear)">
+        <MappingFragment StoreEntitySet="AcademicYear">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discipline">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Discipline)">
+        <MappingFragment StoreEntitySet="Discipline">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Group)">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Litera" ColumnName="Litera" />
+          <ScalarProperty Name="SubGroup" ColumnName="SubGroup" />
+          <ScalarProperty Name="CountClasses" ColumnName="CountClasses" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journal">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Journal)">
+        <MappingFragment StoreEntitySet="Journal">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.People)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SurName" ColumnName="SurName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Role)">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Student)">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Teacher)">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="User_Role" TypeName="Model.User_Role" StoreEntitySet="User_Role">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="ID" ColumnName="Role_ID" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="login" ColumnName="User_login" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+>>>>>>> Stashed changes
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -428,7 +738,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>

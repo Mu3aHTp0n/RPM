@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+<<<<<<< Updated upstream
       <Diagram DiagramId="09715e724f4e46deb68d6a006c88316d" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Discipline" Width="1.5" PointX="0.75" PointY="6.75" />
@@ -13,6 +14,18 @@
         <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="1.125" PointY="3.75" />
         <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="6" PointY="2.375" />
         <EntityTypeShape EntityType="Model.Teacher" Width="1.5" PointX="6" PointY="5.5" />
+=======
+      <Diagram DiagramId="09715e724f4e46deb68d6a006c88316d" Name="Diagram1" ZoomLevel="90">
+        <EntityTypeShape EntityType="Model.AcademicYear" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.Discipline" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.Group" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="Model.Journal" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.People" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="Model.Teacher" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="8" PointY="0.875" />
+>>>>>>> Stashed changes
         <AssociationConnector Association="Model.FK_Student_Group" />
         <AssociationConnector Association="Model.FK_Student_People" />
         <AssociationConnector Association="Model.FK_Teacher_People" />

@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp1.Windows.Journal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Windows"
+        mc:Ignorable="d"
+        Title="Журнал" Height="450" Width="750"
+        Loaded="Window_Loaded">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        Margin="20">
+                <Label Content="Учебный год"/>
+                <ComboBox x:Name="academYear"
+                          Width="150"
+                          Margin="0 0 25 0"
+                          SelectionChanged="academYear_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <Run Text="{Binding StartYear}"/>
+                                <Run Text="-"/>
+                                <Run Text="{Binding EndYear}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Content="Группа:"/>
+                <ComboBox x:Name="groupMenu" 
+                          Width="200"
+                          DisplayMemberPath="Name"
+                          SelectionChanged="SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="20">
+                <DataGrid x:Name="studentsTable" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Фамилия"
+                                            Binding="{Binding People.SurName}"/>
+                        <DataGridTextColumn Header="Имя"
+                                            Binding="{Binding People.Name}"/>
+                        <DataGridTextColumn Header="Отчество" 
+                                            Width="*"
+                                            Binding="{Binding People.SecondName}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
