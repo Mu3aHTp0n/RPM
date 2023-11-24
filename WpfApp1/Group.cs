@@ -18,6 +18,7 @@ namespace WpfApp1
         public Group()
         {
             this.Student = new HashSet<Student>();
+            this.Journal = new HashSet<Journal>();
         }
     
         public decimal ID { get; set; }
@@ -29,5 +30,7 @@ namespace WpfApp1
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Journal> Journal { get; set; }
     }
 }

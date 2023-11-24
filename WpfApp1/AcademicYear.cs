@@ -12,14 +12,10 @@ namespace WpfApp1
     using System;
     using System.Collections.Generic;
     
-    public partial class Journal
+    public partial class AcademicYear
     {
         public decimal ID { get; set; }
-        public decimal TeacherID { get; set; }
-        public decimal DisciplineID { get; set; }
-        public decimal StudentID { get; set; }
-        public decimal GroupID { get; set; }
-    
-        public virtual Group Group { get; set; }
+        public decimal StartYear { get; set; }
+        public decimal EndYear { get; set; }
     }
 }

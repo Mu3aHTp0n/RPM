@@ -18,6 +18,8 @@
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="10.75" PointY="5.375" />
         <AssociationConnector Association="Model.User_Role" />
         <AssociationConnector Association="Model.FK_People_User" />
+        <EntityTypeShape EntityType="Model.AcademicYear" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_Journal_Group" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartYear" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="EndYear" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="Discipline">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,8 +24,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Year" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="ID" Type="numeric" Precision="18" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Litera" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="SubGroup" Type="numeric" Precision="1" Scale="0" Nullable="false" />
           <Property Name="CountClasses" Type="numeric" Precision="18" Scale="0" Nullable="false" />
@@ -31,6 +39,7 @@
           <Property Name="TeacherID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="DisciplineID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="StudentID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GroupID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -81,6 +90,18 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Role" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Journal_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_People_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="People" Type="Self.People" Multiplicity="*" />
@@ -154,6 +175,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="AcademicYear" EntityType="Self.AcademicYear" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discipline" EntityType="Self.Discipline" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
@@ -163,6 +185,10 @@
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Role" EntityType="Self.User_Role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Journal_Group" Association="Self.FK_Journal_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
           <AssociationSet Name="FK_People_User" Association="Self.FK_People_User">
             <End Role="User" EntitySet="User" />
             <End Role="People" EntitySet="People" />
@@ -221,6 +247,11 @@
             <End Role="User" EntitySet="User" />
             <End Role="People" EntitySet="People" />
           </AssociationSet>
+          <EntitySet Name="AcademicYear" EntityType="Model.AcademicYear" />
+          <AssociationSet Name="FK_Journal_Group" Association="Model.FK_Journal_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Journal" EntitySet="Journal" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Discipline">
           <Key>
@@ -234,12 +265,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Year" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="Year" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Litera" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="SubGroup" Type="Decimal" Nullable="false" Precision="1" Scale="0" />
           <Property Name="CountClasses" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="33" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Student" Relationship="Model.FK_Student_Group" FromRole="Group" ToRole="Student" />
+          <NavigationProperty Name="Journal" Relationship="Model.FK_Journal_Group" FromRole="Group" ToRole="Journal" />
         </EntityType>
         <EntityType Name="Journal">
           <Key>
@@ -249,6 +281,8 @@
           <Property Name="TeacherID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="DisciplineID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="StudentID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="GroupID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Group" Relationship="Model.FK_Journal_Group" FromRole="Journal" ToRole="Group" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -352,6 +386,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AcademicYear">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartYear" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+          <Property Name="EndYear" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+        </EntityType>
+        <Association Name="FK_Journal_Group">
+          <End Type="Model.Group" Role="Group" Multiplicity="1" />
+          <End Type="Model.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -381,6 +435,7 @@
           <EntitySetMapping Name="Journal">
             <EntityTypeMapping TypeName="Model.Journal">
               <MappingFragment StoreEntitySet="Journal">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="DisciplineID" ColumnName="DisciplineID" />
                 <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
@@ -442,6 +497,15 @@
               <ScalarProperty Name="ID" ColumnName="Role" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="AcademicYear">
+            <EntityTypeMapping TypeName="Model.AcademicYear">
+              <MappingFragment StoreEntitySet="AcademicYear">
+                <ScalarProperty Name="EndYear" ColumnName="EndYear" />
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
