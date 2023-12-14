@@ -26,13 +26,15 @@ namespace WpfApp1.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             groupMenu.ItemsSource = Singletone.DB.Group.ToList();
-
-            //// Получение данных из БД
-            //List<AcademicYear> years = Singletone.DB.AcademicYear.ToList();
-            //// Источник данных для ComboBox
-            //academYear.ItemsSource = years;
+            academYear.ItemsSource = Singletone.DB.AcademicYear.ToList();
+            int y = DateTime.Now.Year;
+            int m = DateTime.Now.Month;
+            
+            var result = new List<AcademicYear>();
+            academYear.SelectedItem = (academYear.ItemsSource as List<AcademicYear>).Find(x => x.StartYear == DateTime.Now.Year && DateTime.Now.Month >= 9 || x.EndYear == DateTime.Now.Year && DateTime.Now.Month <= 8);
+            if (result.Count != 0)
+                academYear.SelectedItem = result[0];
         }
-
         private void SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Group choosenGroup = groupMenu.SelectedItem as Group;

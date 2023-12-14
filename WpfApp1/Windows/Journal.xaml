@@ -15,15 +15,20 @@
                           Width="150"
                           DisplayMemberPath=""
                           Margin="0 0 25 0">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding AcademicYear.StartYear}"/>
-                                <TextBlock Text="{Binding AcademicYear.EndYear}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                        <Run Text="{Binding StartYear}"/>
+                        <Run Text=" - "/>
+                        <Run Text="{Binding EndYear}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                <Label Content="Дисциплина:"/>
+                <ComboBox x:Name="diciplineMenu" 
+                          Width="200"
+                          DisplayMemberPath="Name"/>
                 <Label Content="Группа:"/>
                 <ComboBox x:Name="groupMenu" 
                           Width="200"
